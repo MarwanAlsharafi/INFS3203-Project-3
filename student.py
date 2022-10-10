@@ -1,4 +1,7 @@
 class Student:
+    def __str__(self):
+        return f"{self.id}, {self.name}, {self.age}"
+
     def __init__(self, name, age, id):
         if type(name) != str:
             raise TypeError("Name should be a string.")

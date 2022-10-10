@@ -74,3 +74,51 @@ class TestStudentSystem(TestCase):
         student_system.add_student(test_student)
 
         self.assertFalse(student_system.delete_student(0))
+
+    def test_export_student_creates_empty_file(self):
+        """
+        Checks that export student works even if student list is empty
+        and that the header row is generated
+        """
+
+        student_system = StudentSystem()
+
+        filename = student_system.export_students()
+
+        with open(filename) as f:
+            lines = f.readlines()
+
+            # Header row exists
+            self.assertEqual(lines[0].strip(), "id, name, age")
+
+            # File data is empty
+            self.assertEqual(len(lines), 1)
+
+    def test_export_student_creates_csv_file(self):
+        """
+        Load some students into the system and check that export student works
+        """
+
+        student_system = StudentSystem()
+
+        student_system.add_student(Student("Asmar", 23, 1))
+        student_system.add_student(Student("Huzaifa", 23, 2))
+        student_system.add_student(Student("Osama", 24, 3))
+        student_system.add_student(Student("Ahmed", 23, 4))
+        student_system.add_student(Student("Marwan", 23, 5))
+
+        filename = student_system.export_students()
+
+        with open(filename) as f:
+            lines = f.readlines()
+
+            # Header row exists
+            self.assertEqual(lines[0].strip(), "id, name, age")
+            self.assertEqual(lines[1].strip(), "1, Asmar, 23")
+            self.assertEqual(lines[2].strip(), "2, Huzaifa, 23")
+            self.assertEqual(lines[3].strip(), "3, Osama, 24")
+            self.assertEqual(lines[4].strip(), "4, Ahmed, 23")
+            self.assertEqual(lines[5].strip(), "5, Marwan, 23")
+
+            # File has header row + 5 data row
+            self.assertEqual(len(lines), 6)

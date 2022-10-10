@@ -32,3 +32,14 @@ class StudentSystem:
             del self.students[id]
             return True
         return False
+
+    def export_students(self, filename: str = "students.csv"):
+        if filename[-4:] != ".csv":
+            filename = filename + ".csv"
+
+        with open(filename, 'w') as f:
+            f.write("id, name, age\n")
+            for student in self.students.values():
+                f.write(str(student) + "\n")
+
+        return filename
