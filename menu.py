@@ -73,10 +73,10 @@ def main():
             print("Exporting student list..........")
 
             filename = input("Enter Filename (leave blank for students.csv):")
-            
+
             used_filename = (
-                student_system.export_students(filename) 
-                if filename 
+                student_system.export_students(filename)
+                if filename
                 else student_system.export_students()
             )
 
