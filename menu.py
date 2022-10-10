@@ -16,6 +16,7 @@ actions = {
     "1": "Add a new student.",
     "2": "Retrieve student.",
     "3": "Delete student.",
+    "4": "Export student list.",
     "0": "Exit the system."
 }
 
@@ -67,6 +68,15 @@ def main():
                 print("Student deleted.")
             else:
                 print("No student found with that id.")
+
+        elif current_action == "4":
+            print("Exporting student list..........")
+
+            filename = input("Enter Filename (leave blank for 'students.csv'):")
+            
+            used_filename = student_system.export_students(filename) if filename else student_system.export_students()
+
+            print(f"Student list export to file {used_filename}")
 
         print("\n")
         for key, action in actions.items():
