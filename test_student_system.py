@@ -90,7 +90,7 @@ class TestStudentSystem(TestCase):
 
             # Header row exists
             self.assertEqual(lines[0].strip(), "id, name, age")
-            
+
             # File data is empty
             self.assertEqual(len(lines), 1)
 
@@ -106,7 +106,7 @@ class TestStudentSystem(TestCase):
         student_system.add_student(Student("Osama", 24, 3))
         student_system.add_student(Student("Ahmed", 23, 4))
         student_system.add_student(Student("Marwan", 23, 5))
-        
+
         filename = student_system.export_students()
 
         with open(filename) as f:
@@ -119,6 +119,6 @@ class TestStudentSystem(TestCase):
             self.assertEqual(lines[3].strip(), "3, Osama, 24")
             self.assertEqual(lines[4].strip(), "4, Ahmed, 23")
             self.assertEqual(lines[5].strip(), "5, Marwan, 23")
-            
+
             # File has header row + 5 data row
             self.assertEqual(len(lines), 6)

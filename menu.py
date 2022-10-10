@@ -72,9 +72,13 @@ def main():
         elif current_action == "4":
             print("Exporting student list..........")
 
-            filename = input("Enter Filename (leave blank for 'students.csv'):")
+            filename = input("Enter Filename (leave blank for students.csv):")
             
-            used_filename = student_system.export_students(filename) if filename else student_system.export_students()
+            used_filename = (
+                student_system.export_students(filename) 
+                if filename 
+                else student_system.export_students()
+            )
 
             print(f"Student list export to file {used_filename}")
 
