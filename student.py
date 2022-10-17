@@ -8,7 +8,7 @@ def pass_random():
     result_str = ''.join((random.choice(password) for i in range(8)))
     passEn = result_str.encode("utf-8")
     encoded = base64.b64encode(passEn)
-    return encoded 
+    return encoded
 
 
 class Student:
