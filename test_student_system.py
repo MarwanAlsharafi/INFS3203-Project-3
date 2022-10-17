@@ -89,7 +89,7 @@ class TestStudentSystem(TestCase):
             lines = f.readlines()
 
             # Header row exists
-            self.assertEqual(lines[0].strip(), "id, name, age")
+            self.assertEqual(lines[0].strip(), "id, name, age, password")
 
             # File data is empty
             self.assertEqual(len(lines), 1)
