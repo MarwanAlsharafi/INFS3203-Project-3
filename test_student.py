@@ -2,8 +2,9 @@ from unittest import TestCase
 from student import Student
 import base64
 
+
 def isBase64(s):
-    """The string is being decoded and the encoded for a comparison 
+    """The string is being decoded and the encoded for a comparison
     and if it is unsucessful it returns false"""
     try:
         return base64.b64encode(base64.b64decode(s)) == s
@@ -16,13 +17,12 @@ class TestStudent(TestCase):
         """Checks that negative id results in a TypeError"""
         with self.assertRaises(TypeError):
             Student("Asmar", 23, -1)
-    
+
     def test_pass(self):
         """Checks that if student has a pass and it is encoded in base64"""
         student = Student("Asmar", 23, 1)
         self.assertIsNotNone(student.password)
         self.assertTrue(isBase64(student.password))
-
 
     def test_negative_age_exception(self):
         """Checks that negative age results in a TypeError"""
