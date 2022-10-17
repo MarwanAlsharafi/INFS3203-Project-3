@@ -18,12 +18,6 @@ class TestStudent(TestCase):
         with self.assertRaises(TypeError):
             Student("Asmar", 23, -1)
 
-    def test_pass(self):
-        """Checks that if student has a pass and it is encoded in base64"""
-        student = Student("Asmar", 23, 1)
-        self.assertIsNotNone(student.password)
-        self.assertTrue(isBase64(student.password))
-
     def test_negative_age_exception(self):
         """Checks that negative age results in a TypeError"""
         with self.assertRaises(TypeError):
@@ -82,3 +76,23 @@ class TestStudent(TestCase):
 
         with self.assertRaises(TypeError):
             Student(['A', 's', 'm', 'a', 'r'], 23, 1)
+
+    def test_password_is_generated(self):
+        """Checks that student has a password and it is encoded in base64"""
+        student = Student("Asmar", 23, 1)
+        self.assertIsNotNone(student.password)
+        self.assertTrue(isBase64(student.password))
+
+    def test_password_can_be_seeded(self):
+        """
+        Checks that if a student password is generated using a seed, it is
+        predictable. As long as the seed is pw_seed_for_unit_test, the
+        password generated should be PGQoAG3J, this might break in future
+        versions of python if the random library changes.
+        """
+        student = Student("Asmar", 23, 1, "pw_seed_for_unit_test")
+        pregenerated_password = b"PGQoAG3J"
+        b64_encoded = b'UEdRb0FHM0o='
+        self.assertEqual(b64_encoded, student.password)
+        self.assertEqual(pregenerated_password,
+                         base64.b64decode(student.password))

@@ -101,11 +101,16 @@ class TestStudentSystem(TestCase):
 
         student_system = StudentSystem()
 
-        student_system.add_student(Student("Asmar", 23, 1))
-        student_system.add_student(Student("Huzaifa", 23, 2))
-        student_system.add_student(Student("Osama", 24, 3))
-        student_system.add_student(Student("Ahmed", 23, 4))
-        student_system.add_student(Student("Marwan", 23, 5))
+        student_system.add_student(
+            Student("Asmar", 23, 1, "pw_seed_for_unit_test_1"))
+        student_system.add_student(
+            Student("Huzaifa", 23, 2, "pw_seed_for_unit_test_2"))
+        student_system.add_student(
+            Student("Osama", 24, 3, "pw_seed_for_unit_test_3"))
+        student_system.add_student(
+            Student("Ahmed", 23, 4, "pw_seed_for_unit_test_4"))
+        student_system.add_student(
+            Student("Marwan", 23, 5, "pw_seed_for_unit_test_5"))
 
         filename = student_system.export_students()
 
@@ -113,12 +118,17 @@ class TestStudentSystem(TestCase):
             lines = f.readlines()
 
             # Header row exists
-            self.assertEqual(lines[0].strip(), "id, name, age")
-            self.assertEqual(lines[1].strip(), "1, Asmar, 23")
-            self.assertEqual(lines[2].strip(), "2, Huzaifa, 23")
-            self.assertEqual(lines[3].strip(), "3, Osama, 24")
-            self.assertEqual(lines[4].strip(), "4, Ahmed, 23")
-            self.assertEqual(lines[5].strip(), "5, Marwan, 23")
+            self.assertEqual(lines[0].strip(), "id, name, age, password")
+            self.assertEqual(lines[1].strip(),
+                             "1, Asmar, 23, b'SnhBMG9OTm8='")
+            self.assertEqual(lines[2].strip(),
+                             "2, Huzaifa, 23, b'QTJnU1Q2c1A='")
+            self.assertEqual(lines[3].strip(),
+                             "3, Osama, 24, b'WWlqc1loc1Q='")
+            self.assertEqual(lines[4].strip(),
+                             "4, Ahmed, 23, b'UjhJU01rQ3A='")
+            self.assertEqual(lines[5].strip(),
+                             "5, Marwan, 23, b'eVUyd0xuR0Q='")
 
             # File has header row + 5 data row
             self.assertEqual(len(lines), 6)
