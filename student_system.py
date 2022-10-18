@@ -38,7 +38,7 @@ class StudentSystem:
             filename = filename + ".csv"
 
         with open(filename, 'w') as f:
-            f.write("id, name, age\n")
+            f.write("id, name, age, password\n")
             for student in self.students.values():
                 f.write(str(student) + "\n")
 
