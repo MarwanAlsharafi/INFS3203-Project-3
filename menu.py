@@ -17,6 +17,7 @@ actions = {
     "2": "Retrieve student.",
     "3": "Delete student.",
     "4": "Export student list.",
+    "6": "Importing student list",
     "0": "Exit the system."
 }
 
@@ -68,6 +69,18 @@ def main():
                 print("Student deleted.")
             else:
                 print("No student found with that id.")
+                
+        elif current_action == "6":
+            print("Importing student.............")
+            filename = input("Enter Filename (leave blank for students.csv):")
+
+            used_filename = (
+                student_system.export_students(filename)
+                if filename
+                else student_system.import_students()
+            )
+
+            print(f"Student list imported")
 
         elif current_action == "4":
             print("Exporting student list..........")

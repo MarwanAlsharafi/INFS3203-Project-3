@@ -1,5 +1,5 @@
 from student import Student
-
+import csv
 
 class StudentSystem:
 
@@ -33,6 +33,14 @@ class StudentSystem:
             return True
         return False
 
+    def import_students(self, filename: str = "students.csv"):
+        with open(filename, 'rt') as f:
+            reader = csv.reader(f)
+            next(reader, None)
+            for row in reader:
+                new_student = Student(row[1],int(row[2]),int(row[0]))
+                self.add_student(new_student)
+        
     def export_students(self, filename: str = "students.csv"):
         if filename[-4:] != ".csv":
             filename = filename + ".csv"
