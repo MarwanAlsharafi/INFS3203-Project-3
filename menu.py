@@ -47,7 +47,7 @@ def main():
             print("Listing students........................")
 
             student_system.list_students()
-   
+
         elif current_action == "3":
             print("Retrieving student...................")
 
