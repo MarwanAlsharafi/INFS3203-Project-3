@@ -42,7 +42,6 @@ class StudentSystem:
             reader = csv.reader(f)
             next(reader, None)
             for row in reader:
-                
                 new_student = Student(row[1].strip(), int(row[2]), int(row[0]))
                 self.add_student(new_student)
     
