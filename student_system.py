@@ -17,6 +17,18 @@ class StudentSystem:
 
         self.students[student.id] = student
 
+    def list_students(self):
+        """Lists the students in the system"""
+        if len(self.students) == 0:
+            print("There are no students in the list currently.")
+        else:
+            for student in self.students.values():
+                print(
+                    f'Name: {student.name}, '
+                    f'Age: {student.age}, '
+                    f'Student ID: {student.id}'
+                    )
+
     def find_student(self, id: int):
         """
         Finds a student based on the id of the student.

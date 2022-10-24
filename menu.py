@@ -17,8 +17,8 @@ actions = {
     "2": "Retrieve student.",
     "3": "Delete student.",
     "4": "Export student list.",
-    "6": "Importing student list",
-    "0": "Exit the system."
+    "0": "Exit the system.",
+    "6": "Importing student list"
 }
 
 
@@ -37,6 +37,11 @@ def main():
             student_system.add_student(new_student)
             print(f"Student {name} added to the list.\n")
         elif current_action == "2":
+            print("Listing students........................")
+
+            student_system.list_students()
+
+        elif current_action == "3":
             print("Retrieving student...................")
             id = int_input("Enter the student ID: ")
             std = student_system.find_student(id)
@@ -47,7 +52,8 @@ def main():
                 print("Name:", std.name),
                 print("Age:", std.age),
                 print("Student ID:", std.id)
-        elif current_action == "3":
+
+        elif current_action == "4":
             print("Deleting student.............")
             id = int_input("Enter student ID: ")
             student_deleted = student_system.delete_student(id)
@@ -55,6 +61,7 @@ def main():
                 print("Student deleted.")
             else:
                 print("No student found with that id.")
+
         elif current_action == "6":
             print("Importing student.............")
             filename = input("Enter Filename (leave blank for students.csv):")
@@ -68,7 +75,9 @@ def main():
                 print(e)
             except FileNotFoundError:
                 print("CSV File is not in directory")
-        elif current_action == "4":
+
+        elif current_action == "5":
+
             print("Exporting student list..........")
             filename = input("Enter Filename (leave blank for students.csv):")
             used_filename = (
