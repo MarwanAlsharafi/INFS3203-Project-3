@@ -1,5 +1,6 @@
 from unittest import TestCase
 from student_system import StudentSystem, Student
+from unittest.mock import patch
 
 
 class TestStudentSystem(TestCase):
@@ -25,6 +26,19 @@ class TestStudentSystem(TestCase):
         student_system.add_student(test_student)
 
         self.assertIs(student_system.find_student(1), test_student)
+
+    @patch('builtins.print')
+    def test_list_students_success(self, mock_print):
+        """
+        Checks listing the students when there are students in the list
+        """
+        student_system = StudentSystem()
+        test_student = Student("Asmar", 23, 600)
+
+        student_system.add_student(test_student)
+        student_system.list_students()
+
+        mock_print.assert_called_with(f'Name: Asmar, Age: 23, Student ID: 600')
 
     def test_delete_student_success(self):
         """
@@ -61,6 +75,17 @@ class TestStudentSystem(TestCase):
         student_system.add_student(test_student)
 
         self.assertEqual(student_system.find_student(0), None)
+
+    @patch('builtins.print')
+    def test_list_students_not_exists(self, mock_print):
+        """
+        Checks listing students if there are no students in the list
+        """
+
+        student_system = StudentSystem()
+
+        student_system.list_students()
+        mock_print.assert_called_with("There are no students in the list currently.")
 
     def test_delete_student_not_exists(self):
         """
