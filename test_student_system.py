@@ -38,7 +38,7 @@ class TestStudentSystem(TestCase):
         student_system.add_student(test_student)
         student_system.list_students()
 
-        mock_print.assert_called_with(f'Name: Asmar, Age: 23, Student ID: 600')
+        mock_print.assert_called_with('Name: Asmar, Age: 23, Student ID: 600')
 
     def test_delete_student_success(self):
         """
@@ -85,7 +85,9 @@ class TestStudentSystem(TestCase):
         student_system = StudentSystem()
 
         student_system.list_students()
-        mock_print.assert_called_with("There are no students in the list currently.")
+        mock_print.assert_called_with(
+            "There are no students in the list currently."
+            )
 
     def test_delete_student_not_exists(self):
         """

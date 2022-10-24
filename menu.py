@@ -46,9 +46,8 @@ def main():
         elif current_action == "2":
             print("Listing students........................")
 
-            student_list = student_system.list_students()
-            
-            
+            student_system.list_students()
+   
         elif current_action == "3":
             print("Retrieving student...................")
 
