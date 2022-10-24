@@ -73,14 +73,18 @@ def main():
         elif current_action == "6":
             print("Importing student.............")
             filename = input("Enter Filename (leave blank for students.csv):")
-
-            used_filename = (
-                student_system.export_students(filename)
-                if filename
-                else student_system.import_students()
-            )
-
-            print(f"Student list imported")
+            try:
+                if filename:
+                    student_system.import_students(filename)
+                else:
+                    student_system.import_students()
+                print(f"Student list imported")
+            except ValueError as e:
+                print(e)
+            except FileNotFoundError:
+                print("CSV File is not in directory")
+            
+            
 
         elif current_action == "4":
             print("Exporting student list..........")

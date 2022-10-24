@@ -75,6 +75,44 @@ class TestStudentSystem(TestCase):
 
         self.assertFalse(student_system.delete_student(0))
 
+
+    def test_import_student_works(self):
+        """
+        Checks that import student works
+        """
+
+        student_system = StudentSystem()
+
+        filename = student_system.import_students("students_test.csv")
+        
+        self.assertEqual(student_system.students[1], Student('Asmar', 23, 1))
+        self.assertEqual(student_system.students[2], Student('Huzaifa', 23, 2))
+        self.assertEqual(student_system.students[3], Student('Osama', 24, 3))
+        self.assertEqual(student_system.students[4], Student('Ahmed', 23, 4))
+        self.assertEqual(student_system.students[5], Student('Marwan', 23, 5))
+
+    def test_import_student_file_nonexistant(self):
+        """
+        Checks if the import student CSV file exists or not
+        """
+        student_system = StudentSystem()
+        
+        with self.assertRaises(FileNotFoundError):
+            filename = student_system.import_students("idk.csv")
+        
+
+    def test_import_student_empty_file(self):
+
+        """
+        Checks that import student csv file is empty or not
+        """
+
+        student_system = StudentSystem()
+
+        filename = student_system.import_students("empty_test.csv")
+
+        self.assertEqual(len(student_system.students), 0)
+
     def test_export_student_creates_empty_file(self):
         """
         Checks that export student works even if student list is empty
