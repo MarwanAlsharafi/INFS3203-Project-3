@@ -10,6 +10,8 @@ def int_input(prompt):
         except ValueError:
             print("Please enter an integer")
 # add actions here
+
+
 actions = {
     "1": "Add a new student.",
     "2": "Retrieve student.",
@@ -18,6 +20,8 @@ actions = {
     "6": "Importing student list",
     "0": "Exit the system."
 }
+
+
 def main():
     student_system = StudentSystem()
     current_action = None
@@ -50,7 +54,7 @@ def main():
             if student_deleted:
                 print("Student deleted.")
             else:
-                print("No student found with that id.")                
+                print("No student found with that id.")
         elif current_action == "6":
             print("Importing student.............")
             filename = input("Enter Filename (leave blank for students.csv):")
@@ -59,7 +63,7 @@ def main():
                     student_system.import_students(filename)
                 else:
                     student_system.import_students()
-                print(f"Student list imported")
+                print("Student list imported")
             except ValueError as e:
                 print(e)
             except FileNotFoundError:
@@ -78,5 +82,7 @@ def main():
             print(key + ". " + action)
 
         current_action = input("\nChoose an action: ").strip()
+
+
 if __name__ == "__main__":
     main()

@@ -26,9 +26,12 @@ def pass_random(pw_seed=None):
 
 class Student:
     def __str__(self):
-        return f"{self.id}, {self.name}, {self.age}, {self.password}"    
+        return f"{self.id}, {self.name}, {self.age}, {self.password}"
+    
     def __eq__(self, student):
-        return self.id == student.id and self.name == student.name and self.age == student.age
+        return (self.id == student.id and self.name == student.name 
+        and self.age == student.age)
+    
     def __init__(self, name, age, id, pw_seed=None):
         if type(name) != str:
             raise TypeError("Name should be a string.")

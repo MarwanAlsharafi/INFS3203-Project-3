@@ -13,8 +13,7 @@ class StudentSystem:
             raise TypeError("student should be object of class Student.")
         if student.id in self.students:
             raise ValueError("Student with ID: " +
-                             str(student.id) + "
-                             already exists")
+                             str(student.id) + "already exists")
 
         self.students[student.id] = student
 
