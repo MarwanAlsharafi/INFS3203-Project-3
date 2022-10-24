@@ -44,7 +44,7 @@ class StudentSystem:
             for row in reader:
                 new_student = Student(row[1].strip(), int(row[2]), int(row[0]))
                 self.add_student(new_student)
-    
+
     def export_students(self, filename: str = "students.csv"):
         if filename[-4:] != ".csv":
             filename = filename + ".csv"

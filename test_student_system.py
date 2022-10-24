@@ -82,7 +82,7 @@ class TestStudentSystem(TestCase):
         Checks if the import student CSV file exists or not
         """
         student_system = StudentSystem()
-   
+
         with self.assertRaises(FileNotFoundError):
             student_system.import_students("idk.csv")
 
