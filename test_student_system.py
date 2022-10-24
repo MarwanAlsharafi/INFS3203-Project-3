@@ -85,6 +85,7 @@ class TestStudentSystem(TestCase):
    
         with self.assertRaises(FileNotFoundError):
             student_system.import_students("idk.csv")
+
     def test_import_student_empty_file(self):
         """
         Checks that import student csv file is empty or not
