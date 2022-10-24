@@ -1,6 +1,7 @@
 from student import Student
 import csv
 
+
 class StudentSystem:
 
     def __init__(self):
@@ -11,7 +12,9 @@ class StudentSystem:
         if type(student) != Student:
             raise TypeError("student should be object of class Student.")
         if student.id in self.students:
-            raise ValueError("Student with ID: " + str(student.id) + " already exists")
+            raise ValueError("Student with ID: " +
+                             str(student.id) + "
+                             already exists")
 
         self.students[student.id] = student
 
