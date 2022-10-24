@@ -1,4 +1,5 @@
 from student import Student
+import csv
 
 
 class StudentSystem:
@@ -10,6 +11,9 @@ class StudentSystem:
         """Adds a student to the system"""
         if type(student) != Student:
             raise TypeError("student should be object of class Student.")
+        if student.id in self.students:
+            raise ValueError("Student with ID: " +
+                             str(student.id) + "already exists")
 
         self.students[student.id] = student
 
@@ -44,6 +48,14 @@ class StudentSystem:
             del self.students[id]
             return True
         return False
+
+    def import_students(self, filename: str = "students.csv"):
+        with open(filename, 'rt') as f:
+            reader = csv.reader(f)
+            next(reader, None)
+            for row in reader:
+                new_student = Student(row[1].strip(), int(row[2]), int(row[0]))
+                self.add_student(new_student)
 
     def export_students(self, filename: str = "students.csv"):
         if filename[-4:] != ".csv":
